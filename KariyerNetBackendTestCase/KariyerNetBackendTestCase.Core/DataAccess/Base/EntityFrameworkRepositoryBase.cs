@@ -679,12 +679,31 @@ namespace KariyerNetBackendTestCase.Core.DataAccess.Base
             return query;
         }
 
- 
-
- 
 
 
- 
+
+        private void RecordToIsDeleted(TEntity entity)
+        {
+
+            if (!(entity is ITrashableEntity)) return;
+
+
+            ((Object)entity).GetType().GetProperty("IsDeleted")?.SetValue(entity, true);
+
+
+            SetCurrentTimeToField(entity, "DeletedTime");
+
+        }
+
+        private void SetCurrentTimeToField(TEntity entity, string fieldName)
+        {
+            var prop = ((Object)entity).GetType().GetProperty(fieldName);
+            var propValue = prop?.GetValue(entity);
+            if (prop != null && (DateTimeOffset)propValue == DateTimeOffset.MinValue)
+            {
+                ((Object)entity).GetType().GetProperty(fieldName)?.SetValue(entity, DateTimeOffset.Now.ToLocalTime());
+            }
+        }
 
         #endregion
 

@@ -3,13 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
+ 
+ 
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\KariyerNetBackendTestCase.DataAccess\KariyerNetBackendTestCase.DataAccess.csproj" />
     <ProjectReference Include="..\KariyerNetBackendTestCase.Dto\KariyerNetBackendTestCase.Dto.csproj" />
     <ProjectReference Include="..\KariyerNetBackendTestCase.Entity\KariyerNetBackendTestCase.Entity.csproj" />
   </ItemGroup>

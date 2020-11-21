@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using KariyerNetBackendTestCase.Dto;
-using KariyerNetBackendTestCase.Entity;
+using KariyerNetBackendTestCase.Entity; 
 
 namespace KariyerNetBackendTestCase.Business.Mappings.AutoMapper
 {
@@ -14,6 +14,7 @@ namespace KariyerNetBackendTestCase.Business.Mappings.AutoMapper
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<UserCvEducation, UserCvEducationDto>().ReverseMap();
             CreateMap<UserCvWorkingExperience, UserCvWorkingExperienceDto>().ReverseMap();
+            CreateMap<JobApplication, JobApplicationDto>().ReverseMap();
 
         }
     }

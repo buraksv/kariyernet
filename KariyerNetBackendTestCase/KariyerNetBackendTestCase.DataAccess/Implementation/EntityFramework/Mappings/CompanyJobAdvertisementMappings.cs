@@ -14,6 +14,7 @@ namespace KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Ma
             builder.HasKey(x => x.Id);
             builder.Property(x => x.CompanyId);
 
+            builder.Property(x => x.AdvertisementName).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(1500).IsRequired();
             builder.Property(x => x.CountryId).IsRequired();
             builder.Property(x => x.CityId).IsRequired();

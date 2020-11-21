@@ -14,8 +14,7 @@ namespace KariyerNetBackendTestCase.Dto
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public short Country { get; set; }
-        public int City { get; set; }
-        public decimal GradeAverage { get; set; }
+        public int City { get; set; } 
          
     }
 }
