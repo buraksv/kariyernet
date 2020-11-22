@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  kariyernetbackendtestcase.web.api:
+    image: ${DOCKER_REGISTRY-}kariyernetbackendtestcasewebapi
+    build:
+      context: .
+      dockerfile: KariyerNetBackendTestCase.Web.Api/Dockerfile
+    networks:
+      backend:
+        ipv4_address: 172.21.0.5
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${MSSQL_PASSWORD}
+    ports: 
+      - ${MSSQL_PORT_OUT}:${MSSQL_PORT_IN}
+    networks:
+      backend:
+        ipv4_address: ${IP_MSSQL_DB}
+networks:
+  backend:
+    name: ${NETWORK}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IP_BLOCK}
