@@ -8,6 +8,7 @@ namespace KariyerNetBackendTestCase.Core.Utilities.Exception.Base
         {
 
         }
+     
         protected UserFriendlyException(string message) : base(message)
         {
 

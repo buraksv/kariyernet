@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
@@ -25,6 +24,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
             _userDal = userDal;
             _mapper = mapper;
         }
+
         [ValidationAspect(typeof(JobApplicationValidator))]
         public IDataResult<JobApplicationDto> ApplyJob(JobApplicationDto jobApplicationDto)
         {
@@ -35,6 +35,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
                 return new ErrorDataResult<JobApplicationDto>(jobApplicationDto,string.Join(",",errorMessages));
 
             var entityData = _mapper.Map<JobApplication>(jobApplicationDto);
+            entityData.CreatedTime = DateTimeOffset.Now;
 
             _jobApplicationDal.Add(entityData);
             _jobApplicationDal.Save();
@@ -51,9 +52,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<JobApplicationDto>(_mapper.Map<JobApplicationDto>(result));
         }
-
- 
-
+         
         public IDataResult<PagedResult<JobApplication>> GetPagedList(JobApplicationPagedListRequestDto requestDto)
         {
             var result = _jobApplicationDal.GetPagedList(requestDto.Page, requestDto.PageSize,
@@ -84,8 +83,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<bool>(true);
         }
-
-
+        
         private void CheckUserCvIfExists(JobApplicationDto jobApplicationDto)
         {
            var userCvControl= _userDal.Exists(x => x.Id == jobApplicationDto.UserId && x.IsDeleted == false && x.IsActive && x.UserCvId!=null);

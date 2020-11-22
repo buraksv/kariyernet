@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
 using KariyerNetBackendTestCase.Core.Entity;
+using KariyerNetBackendTestCase.Core.Utilities.Business;
 using KariyerNetBackendTestCase.Core.Utilities.Results;
 using KariyerNetBackendTestCase.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Dto;
@@ -25,7 +27,8 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
         public IDataResult<CompanyJobAdvertisementDto> Add(CompanyJobAdvertisementDto companyJobAdvertisementDto)
         {
             var request = _mapper.Map<CompanyJobAdvertisement>(companyJobAdvertisementDto);
-
+            request.CreatedTime=DateTimeOffset.Now;
+            
             _companyJobAdvertisementDal.Add(request);
             _companyJobAdvertisementDal.Save();
 
@@ -41,7 +44,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
             return new SuccessDataResult<CompanyJobAdvertisementDto>(_mapper.Map<CompanyJobAdvertisementDto>(result)); 
         }
 
-        public IDataResult<PagedResult<CompanyJobAdvertisement>> GetPagedList(CompanyPagedListRequestDto requestDto)
+        public IDataResult<PagedResult<CompanyJobAdvertisement>> GetPagedList(CompanyJobAdvertisementPagedListRequestDto requestDto)
         {
             var result = _companyJobAdvertisementDal.GetPagedList(requestDto.Page, requestDto.PageSize,
                 x => x.AdvertisementName.Contains(requestDto.SearchTerm) || x.Description.Contains(requestDto.SearchTerm));
@@ -51,10 +54,22 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
         public IDataResult<int> DeleteById(long companyJobAdvertisementId)
         {
+
+            var rulesResult = BusinessRuleRunner.Run(out var errorMessages, () => CheckIfJobApplicationExists(companyJobAdvertisementId));
+
+            if (rulesResult)
+                return new ErrorDataResult<int>(string.Join(",", errorMessages));
+
             _companyJobAdvertisementDal.MoveToTrash(companyJobAdvertisementId);
             var count = _companyJobAdvertisementDal.Save();
 
             return new SuccessDataResult<int>(count);
+        }
+
+        private void CheckIfJobApplicationExists(long companyJobAdvertisementId)
+        {
+            
+            throw new Exception("Silmek istediğiniz ilana başvurular yapıldığı için işlem engellendi.");
         }
     }
 }

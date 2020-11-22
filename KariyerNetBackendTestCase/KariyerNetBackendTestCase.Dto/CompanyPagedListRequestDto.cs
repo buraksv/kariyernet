@@ -4,7 +4,6 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class CompanyPagedListRequestDto:PagedListRequestDtoBase
     {
- 
-        public string SearchTerm { get; set; }
+         public string SearchTerm { get; set; }
     }
 }

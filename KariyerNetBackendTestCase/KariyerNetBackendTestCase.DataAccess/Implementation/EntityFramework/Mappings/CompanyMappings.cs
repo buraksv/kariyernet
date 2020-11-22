@@ -18,8 +18,7 @@ namespace KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Ma
             builder.Property(x => x.CompanyAddress).HasMaxLength(500).IsRequired();
             builder.Property(x => x.IsDeleted).IsRequired();
             builder.Property(x => x.IsActive).IsRequired();
-            builder.Property(x => x.CreatedTime).HasDefaultValue(DateTimeOffset.Now);
-
+ 
             builder.HasIndex(x => new { x.IsActive, x.IsDeleted }).IsClustered(false).HasDatabaseName($"Companies_Mgr_NCIndex_{DateTime.Now:ddMMyyyy}");
         }
     }

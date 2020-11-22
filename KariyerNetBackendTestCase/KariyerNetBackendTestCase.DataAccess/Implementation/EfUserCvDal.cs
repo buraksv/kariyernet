@@ -1,13 +1,13 @@
 ﻿using KariyerNetBackendTestCase.Core.DataAccess.Base;
 using KariyerNetBackendTestCase.DataAccess.Abstract;
+using KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Context;
 using KariyerNetBackendTestCase.Entity;
-using Microsoft.EntityFrameworkCore;
 
 namespace KariyerNetBackendTestCase.DataAccess.Implementation
 {
     public class EfUserCvDal : EntityFrameworkRepositoryBase<UserCv, long>, IUserCvDal
     {
-        public EfUserCvDal(DbContext context) : base(context)
+        public EfUserCvDal(KariyerNetBackendTestCaseDbContext context) : base(context)
         {
         }
     }

@@ -9,4 +9,8 @@
     <ProjectReference Include="..\KariyerNetBackendTestCase.Entity\KariyerNetBackendTestCase.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\MsSql\" />
+  </ItemGroup>
+
 </Project>

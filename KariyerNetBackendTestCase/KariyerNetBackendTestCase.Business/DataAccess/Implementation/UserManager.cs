@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
@@ -24,13 +25,14 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
         public IDataResult<UserDto> Add(UserDto userDto)
         {
             var request = _mapper.Map<User>(userDto);
+            request.CreatedTime=DateTimeOffset.Now;
+            
 
             _userDal.Add(request);
             _userDal.Save();
 
             return new SuccessDataResult<UserDto>(_mapper.Map<UserDto>(request));
         }
-
         public IDataResult<UserDto> GetById(long userId)
         {
             var result = _userDal.GetFirstOrDefault(x => x.Id == userId && x.IsDeleted==false);
@@ -49,7 +51,6 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<UserDto>(userDto);
         }
-
         public IDataResult<PagedResult<User>> GetPagedList(UserPagedListRequestDto requestDto)
         {
             var result = _userDal.GetPagedList(requestDto.Page, requestDto.PageSize,
@@ -57,7 +58,6 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<PagedResult<User>>(result);
         }
-
         public IDataResult<int> DeleteById(long companyId)
         {
             _userDal.MoveToTrash(companyId);

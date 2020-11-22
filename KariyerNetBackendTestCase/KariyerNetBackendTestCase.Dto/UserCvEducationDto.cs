@@ -5,6 +5,7 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class UserCvEducationDto:IDto
     {
+        public long Id { get; set; }
         public long UserCvId { get; set; }
         public SchoolLevelEnum SchoolLevel { get; set; }
         public string SchoolName { get; set; }

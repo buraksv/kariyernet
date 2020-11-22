@@ -11,5 +11,11 @@
     <ProjectReference Include="..\KariyerNetBackendTestCase.Dto\KariyerNetBackendTestCase.Dto.csproj" />
     <ProjectReference Include="..\KariyerNetBackendTestCase.Entity\KariyerNetBackendTestCase.Entity.csproj" />
   </ItemGroup>
+ 
+ 
+
+  <ItemGroup>
+    <Folder Include="DependencyManagement\Autofac\" />
+  </ItemGroup>
 
 </Project>

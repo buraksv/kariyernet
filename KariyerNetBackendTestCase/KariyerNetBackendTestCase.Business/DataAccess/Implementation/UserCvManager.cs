@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
@@ -25,6 +26,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
         public IDataResult<UserCvDto> Add(UserCvDto userCv)
         {
             var request = _mapper.Map<UserCv>(userCv);
+            request.CreatedTime=DateTimeOffset.Now;
 
             _userCvDal.Add(request);
             _userCvDal.Save();
@@ -50,13 +52,6 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<UserCvDto>(userDvCv);
         }
-
-        public IDataResult<PagedResult<UserCv>> GetPagedList(UserCvPagedListRequestDto requestDto)
-        {
-            var result = _userCvDal.GetPagedList(requestDto.Page, requestDto.PageSize,
-                x => x.JobTitle.Contains(requestDto.SearchTerm) || x.SummaryInformation.Contains(requestDto.SearchTerm));
-
-            return new SuccessDataResult<PagedResult<UserCv>>(result);
-        }
+         
     }
 }

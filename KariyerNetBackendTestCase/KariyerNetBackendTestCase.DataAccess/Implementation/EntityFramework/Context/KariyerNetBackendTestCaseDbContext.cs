@@ -8,7 +8,8 @@ namespace KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Co
         public KariyerNetBackendTestCaseDbContext(DbContextOptions<KariyerNetBackendTestCaseDbContext> options) :
             base(options)
         {
-
+ 
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -25,7 +25,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
         public IDataResult<UserCvEducationDto> Add(UserCvEducationDto userCvEducationDto)
         {
             var request = _mapper.Map<UserCvEducation>(userCvEducationDto);
-
+            
             _userCvEducationDal.Add(request);
             _userCvEducationDal.Save();
 

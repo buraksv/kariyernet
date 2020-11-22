@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Entity", "KariyerNetBackendTestCase.Entity\KariyerNetBackendTestCase.Entity.csproj", "{EF785D5A-B948-43B1-9ABA-C1D9DB306DAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.Entity", "KariyerNetBackendTestCase.Entity\KariyerNetBackendTestCase.Entity.csproj", "{EF785D5A-B948-43B1-9ABA-C1D9DB306DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Core", "KariyerNetBackendTestCase.Core\KariyerNetBackendTestCase.Core.csproj", "{BE3B91AD-6A7E-4B16-A8B5-FBC4DC5B90A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.Core", "KariyerNetBackendTestCase.Core\KariyerNetBackendTestCase.Core.csproj", "{BE3B91AD-6A7E-4B16-A8B5-FBC4DC5B90A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Enum", "KariyerNetBackendTestCase.Enum\KariyerNetBackendTestCase.Enum.csproj", "{EE85E8F2-F81C-43FF-B630-D50D216FB245}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.Enum", "KariyerNetBackendTestCase.Enum\KariyerNetBackendTestCase.Enum.csproj", "{EE85E8F2-F81C-43FF-B630-D50D216FB245}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Dto", "KariyerNetBackendTestCase.Dto\KariyerNetBackendTestCase.Dto.csproj", "{5FEAFA50-E2A1-4469-8540-1F3F2900B286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.Dto", "KariyerNetBackendTestCase.Dto\KariyerNetBackendTestCase.Dto.csproj", "{5FEAFA50-E2A1-4469-8540-1F3F2900B286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Business", "KariyerNetBackendTestCase.Business\KariyerNetBackendTestCase.Business.csproj", "{89CEBF8E-32FE-4FC8-A57D-DF57DAE10506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.Business", "KariyerNetBackendTestCase.Business\KariyerNetBackendTestCase.Business.csproj", "{89CEBF8E-32FE-4FC8-A57D-DF57DAE10506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.DataAccess", "KariyerNetBackendTestCase.DataAccess\KariyerNetBackendTestCase.DataAccess.csproj", "{0AA93549-413C-4346-B0DE-02DEC769454D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KariyerNetBackendTestCase.DataAccess", "KariyerNetBackendTestCase.DataAccess\KariyerNetBackendTestCase.DataAccess.csproj", "{0AA93549-413C-4346-B0DE-02DEC769454D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KariyerNetBackendTestCase.Web.Api", "KariyerNetBackendTestCase.Web.Api\KariyerNetBackendTestCase.Web.Api.csproj", "{89153018-119E-4800-B4A5-1A3C0CA8B45E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0AA93549-413C-4346-B0DE-02DEC769454D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA93549-413C-4346-B0DE-02DEC769454D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA93549-413C-4346-B0DE-02DEC769454D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89153018-119E-4800-B4A5-1A3C0CA8B45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89153018-119E-4800-B4A5-1A3C0CA8B45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89153018-119E-4800-B4A5-1A3C0CA8B45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89153018-119E-4800-B4A5-1A3C0CA8B45E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

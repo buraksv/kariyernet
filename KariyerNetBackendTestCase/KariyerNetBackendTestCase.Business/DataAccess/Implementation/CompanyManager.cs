@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
@@ -24,6 +25,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
         public IDataResult<CompanyDto> Add(CompanyDto companyDto)
         {
             var request = _mapper.Map<Company>(companyDto);
+            request.CreatedTime = DateTimeOffset.Now;
 
             _companyDal.Add(request);
             _companyDal.Save();
@@ -64,6 +66,12 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
             var count = _companyDal.Save();
 
             return new SuccessDataResult<int>(count);
+        }
+
+        private void CheckIfCompanyActiveAdvertisementExists(long companyId)
+        {
+
+            throw new Exception("Firmanın yayında olan ilanları mevcut oluğu için firma silinemez.");
         }
     }
 }

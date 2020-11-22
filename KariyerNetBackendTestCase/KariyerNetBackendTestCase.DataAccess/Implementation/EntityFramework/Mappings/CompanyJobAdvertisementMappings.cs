@@ -20,8 +20,7 @@ namespace KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Ma
             builder.Property(x => x.CityId).IsRequired();
             builder.Property(x => x.TownId).IsRequired();
             builder.Property(x => x.ExpirationTime).IsRequired(); 
-            builder.Property(x => x.CreatedTime).HasDefaultValue(DateTimeOffset.Now);
-
+ 
             builder.HasIndex(x => new { x.CompanyId  }).IsClustered(false).HasDatabaseName($"CompanyJobAdvertisement_CompanyId_Mgr_NCIndex_{DateTime.Now:ddMMyyyy}");
         }
     }

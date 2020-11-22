@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using KariyerNetBackendTestCase.Dto;
-using KariyerNetBackendTestCase.Entity;
 
 namespace KariyerNetBackendTestCase.Business.Validation
 {

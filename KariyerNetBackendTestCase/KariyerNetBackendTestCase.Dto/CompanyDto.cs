@@ -5,6 +5,7 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class CompanyDto:IDto
     {
+        public long Id { get; set; }
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }
         public DateTimeOffset CreatedTime { get; set; }

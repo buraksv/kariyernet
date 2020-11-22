@@ -5,9 +5,9 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class CompanyJobAdvertisementDto:IDto
     {
+        public long Id { get; set; }
         public long CompanyId { get; set; }
         public string AdvertisementName { get; set; }
-
         public string Description { get; set; }
         public short CountryId { get; set; }
         public int CityId { get; set; }

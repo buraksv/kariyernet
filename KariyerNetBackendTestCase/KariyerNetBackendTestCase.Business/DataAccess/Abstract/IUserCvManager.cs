@@ -9,7 +9,6 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
     {
         IDataResult<UserCvDto> Add(UserCvDto userCv);
         IDataResult<UserCvDto> GetById(long userCvId);
-        IDataResult<UserCvDto> Update(UserCvDto userDvCv);
-        IDataResult<PagedResult<UserCv>> GetPagedList(UserCvPagedListRequestDto requestDto);
+        IDataResult<UserCvDto> Update(UserCvDto userDvCv); 
     }
 }

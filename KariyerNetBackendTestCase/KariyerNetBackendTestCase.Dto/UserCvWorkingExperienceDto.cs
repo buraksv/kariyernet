@@ -6,6 +6,7 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class UserCvWorkingExperienceDto:IDto
     {
+        public long Id { get; set; }
         public long UserCvId { get; set; }
         public CompanySectorEnum CompanySector { get; set; }
         public string CompanyName { get; set; }

@@ -5,6 +5,7 @@ namespace KariyerNetBackendTestCase.Dto
 {
     public class UserCvDto : IDto
     {
+        public long Id { get; set; }
         public string SummaryInformation { get; set; }
         public string JobTitle { get; set; }
         public short Country { get; set; }

@@ -9,7 +9,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
     {
         IDataResult<CompanyJobAdvertisementDto> Add(CompanyJobAdvertisementDto companyJobAdvertisementDto);
         IDataResult<CompanyJobAdvertisementDto> GetById(long companyJobAdvertisementId);
-        IDataResult<PagedResult<CompanyJobAdvertisement>> GetPagedList(CompanyPagedListRequestDto requestDto);
+        IDataResult<PagedResult<CompanyJobAdvertisement>> GetPagedList(CompanyJobAdvertisementPagedListRequestDto requestDto);
         IDataResult<int> DeleteById(long companyJobAdvertisementId);
 
     }

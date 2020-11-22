@@ -1,13 +1,13 @@
 ﻿using KariyerNetBackendTestCase.Core.DataAccess.Base;
 using KariyerNetBackendTestCase.DataAccess.Abstract;
+using KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Context;
 using KariyerNetBackendTestCase.Entity;
-using Microsoft.EntityFrameworkCore;
 
 namespace KariyerNetBackendTestCase.DataAccess.Implementation
 {
     public class EfUserDal : EntityFrameworkRepositoryBase<User, long>, IUserDal
     {
-        public EfUserDal(DbContext context) : base(context)
+        public EfUserDal(KariyerNetBackendTestCaseDbContext context) : base(context)
         {
         }
     }

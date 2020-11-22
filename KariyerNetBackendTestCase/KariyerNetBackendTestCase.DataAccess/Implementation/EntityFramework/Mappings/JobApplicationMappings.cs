@@ -19,8 +19,7 @@ namespace KariyerNetBackendTestCase.DataAccess.Implementation.EntityFramework.Ma
             builder.Property(x => x.ApplicationLetter).HasMaxLength(500);
             builder.Property(x => x.IsDeleted).IsRequired();
             builder.Property(x => x.IsViewed).IsRequired();
-            builder.Property(x => x.CreatedTime).HasDefaultValue(DateTimeOffset.Now);
-
+ 
             builder.HasIndex(x => new {  x.IsDeleted }).IsClustered(false).HasDatabaseName($"JobApplications_Mgr_NCIndex_{DateTime.Now:ddMMyyyy}");
             builder.HasIndex(x => new {  x.IsViewed }).IsClustered(false).HasDatabaseName($"JobApplications_Mgr_IsViewed_NCIndex_{DateTime.Now:ddMMyyyy}");
         }
