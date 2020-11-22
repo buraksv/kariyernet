@@ -1,7 +1,5 @@
-﻿using KariyerNetBackendTestCase.Core.Entity;
-using KariyerNetBackendTestCase.Core.Utilities.Results;
+﻿using KariyerNetBackendTestCase.Core.Utilities.Results;
 using KariyerNetBackendTestCase.Dto;
-using KariyerNetBackendTestCase.Entity;
 
 namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
 {

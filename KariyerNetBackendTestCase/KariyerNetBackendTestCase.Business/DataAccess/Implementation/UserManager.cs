@@ -58,12 +58,19 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<PagedResult<User>>(result);
         }
-        public IDataResult<int> DeleteById(long companyId)
+        public IDataResult<int> DeleteById(long userId)
         {
-            _userDal.MoveToTrash(companyId);
+            _userDal.MoveToTrash(userId);
             var count = _userDal.Save();
 
             return new SuccessDataResult<int>(count);
+        }
+
+        public IDataResult<bool> CheckUserCv(long userId)
+        {
+            var control= _userDal.Exists(x => x.Id == userId && x.IsDeleted == false && x.IsActive && x.UserCvId != null);
+
+            return new SuccessDataResult<bool>(control); 
         }
     }
 }

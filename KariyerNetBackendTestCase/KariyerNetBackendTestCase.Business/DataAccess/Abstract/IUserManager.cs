@@ -11,7 +11,8 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
         IDataResult<UserDto> GetById(long userId);
         IDataResult<UserDto> Update(UserDto userDto);
         IDataResult<PagedResult<User>> GetPagedList(UserPagedListRequestDto requestDto);
-        IDataResult<int> DeleteById(long companyId);
+        IDataResult<int> DeleteById(long userId);
+        IDataResult<bool> CheckUserCv(long userId);
 
     }
 }

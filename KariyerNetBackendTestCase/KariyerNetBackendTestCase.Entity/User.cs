@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using KariyerNetBackendTestCase.Core.Entity.Abstract;
 using KariyerNetBackendTestCase.Core.Entity.Base;
 
@@ -16,5 +17,7 @@ namespace KariyerNetBackendTestCase.Entity
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
 
+        public virtual UserCv UserCv { get; set; }
+        public virtual List<JobApplication> JobApplications{ get; set; }
     }
 }

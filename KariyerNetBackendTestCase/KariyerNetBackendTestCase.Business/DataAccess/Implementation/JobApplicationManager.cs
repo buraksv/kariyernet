@@ -15,13 +15,13 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
     public class JobApplicationManager : IJobApplicationManager
     {
         private readonly IJobApplicationDal _jobApplicationDal;
-        private readonly IUserDal _userDal;
+        private readonly IUserManager _userManager;
         private readonly IMapper _mapper;
 
-        public JobApplicationManager(IJobApplicationDal jobApplicationDal, IUserDal userDal, IMapper mapper)
+        public JobApplicationManager(IJobApplicationDal jobApplicationDal, IUserManager userManager, IMapper mapper)
         {
             _jobApplicationDal = jobApplicationDal;
-            _userDal = userDal;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
@@ -83,12 +83,19 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
             return new SuccessDataResult<bool>(true);
         }
-        
+
+        public IDataResult<bool> CheckActiveJobApplicationByJobAdvertisementId(long jobAdvertisementId)
+        {
+            var control= _jobApplicationDal.Exists(x =>
+                x.IsDeleted == false && x.CompanyJobAdvertisementId == jobAdvertisementId && x.IsViewed == false);
+            
+            return new SuccessDataResult<bool>(control); 
+        }
+
         private void CheckUserCvIfExists(JobApplicationDto jobApplicationDto)
         {
-           var userCvControl= _userDal.Exists(x => x.Id == jobApplicationDto.UserId && x.IsDeleted == false && x.IsActive && x.UserCvId!=null);
-
-           if(!userCvControl) throw new Exception("Kullanıcının CV si olmadığı için başvuru yapamaz");
+           if(!_userManager.CheckUserCv(jobApplicationDto.UserId).Data)
+                throw new Exception("Kullanıcının CV si olmadığı için başvuru yapamaz");
         }
     }
 }

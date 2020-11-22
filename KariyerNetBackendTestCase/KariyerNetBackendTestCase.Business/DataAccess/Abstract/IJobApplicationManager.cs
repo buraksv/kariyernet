@@ -13,5 +13,6 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
         IDataResult<PagedResult<JobApplication>> GetPagedList(JobApplicationPagedListRequestDto requestDto);
         IDataResult<int> DeleteById(Guid jobApplicationId);
         IDataResult<bool> SetViewed(Guid jobApplicationId);
+        IDataResult<bool> CheckActiveJobApplicationByJobAdvertisementId(long jobAdvertisementId);
     }
 }

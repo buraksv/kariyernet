@@ -4,6 +4,7 @@ using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
 using KariyerNetBackendTestCase.Core.Entity;
+using KariyerNetBackendTestCase.Core.Utilities.Business;
 using KariyerNetBackendTestCase.Core.Utilities.Results;
 using KariyerNetBackendTestCase.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Dto;
@@ -14,18 +15,20 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
     public class CompanyManager : ICompanyManager
     {
         private readonly ICompanyDal _companyDal;
+        private readonly ICompanyJobAdvertisementManager _companyJobAdvertisementManager;
         private readonly IMapper _mapper;
 
-        public CompanyManager(ICompanyDal companyDal, IMapper mapper)
+        public CompanyManager(ICompanyDal companyDal, IMapper mapper, ICompanyJobAdvertisementManager companyJobAdvertisementManager)
         {
             _companyDal = companyDal;
             _mapper = mapper;
+            _companyJobAdvertisementManager = companyJobAdvertisementManager;
         }
         [ValidationAspect(typeof(CompanyValidator))]
         public IDataResult<CompanyDto> Add(CompanyDto companyDto)
         {
             var request = _mapper.Map<Company>(companyDto);
-            request.CreatedTime = DateTimeOffset.Now;
+            request.CreatedTime=DateTimeOffset.Now;
 
             _companyDal.Add(request);
             _companyDal.Save();
@@ -62,16 +65,22 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
 
         public IDataResult<int> DeleteById(long companyId)
         {
-             _companyDal.MoveToTrash(companyId);
+            var rulesResult = BusinessRuleRunner.Run(out var errorMessages, () => CheckIfCompanyActiveAdvertisementExists(companyId));
+
+            if (rulesResult)
+                return new ErrorDataResult<int>(string.Join(",", errorMessages));
+
+            _companyDal.MoveToTrash(companyId);
             var count = _companyDal.Save();
 
             return new SuccessDataResult<int>(count);
         }
 
+   
         private void CheckIfCompanyActiveAdvertisementExists(long companyId)
         {
-
-            throw new Exception("Firmanın yayında olan ilanları mevcut oluğu için firma silinemez.");
+            if(_companyJobAdvertisementManager.CheckCompanyActiveAdvertisement(companyId).Data)
+                throw new Exception("Firmanın yayında olan ilanları mevcut oluğu için firma silinemez.");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
@@ -15,12 +16,14 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
     public class CompanyJobAdvertisementManager:ICompanyJobAdvertisementManager
     {
         private readonly ICompanyJobAdvertisementDal _companyJobAdvertisementDal;
+        private readonly IJobApplicationManager _jobApplicationManager;
         private readonly IMapper _mapper;
 
-        public CompanyJobAdvertisementManager(ICompanyJobAdvertisementDal companyJobAdvertisementDal, IMapper mapper)
+        public CompanyJobAdvertisementManager(ICompanyJobAdvertisementDal companyJobAdvertisementDal, IMapper mapper, IJobApplicationManager jobApplicationManager)
         {
             _companyJobAdvertisementDal = companyJobAdvertisementDal;
             _mapper = mapper;
+            _jobApplicationManager = jobApplicationManager;
         }
 
         [ValidationAspect(typeof(CompanyJobAdvertisementValidator))]
@@ -66,10 +69,18 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Implementation
             return new SuccessDataResult<int>(count);
         }
 
+        public IDataResult<bool> CheckCompanyActiveAdvertisement(long companyId)
+        {
+            var control = _companyJobAdvertisementDal.Exists(x =>
+                x.IsActive && x.ExpirationTime >= DateTimeOffset.Now && x.JobApplications.Any());
+
+            return new SuccessDataResult<bool>(control);
+        }
+
         private void CheckIfJobApplicationExists(long companyJobAdvertisementId)
         {
-            
-            throw new Exception("Silmek istediğiniz ilana başvurular yapıldığı için işlem engellendi.");
+            if(_jobApplicationManager.CheckActiveJobApplicationByJobAdvertisementId(companyJobAdvertisementId).Data);
+                throw new Exception("Silmek istediğiniz ilana yeni başvurular yapıldığı için işlem engellendi.");
         }
     }
 }

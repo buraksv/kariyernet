@@ -11,7 +11,7 @@ namespace KariyerNetBackendTestCase.Business.DataAccess.Abstract
         IDataResult<CompanyDto> GetById(long companyId);
         IDataResult<CompanyDto> Update(CompanyDto companyDto);
         IDataResult<PagedResult<Company>> GetPagedList(CompanyPagedListRequestDto requestDto);
-        IDataResult<int> DeleteById(long companyId);
+        IDataResult<int> DeleteById(long companyId); 
 
 
     }

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using KariyerNetBackendTestCase.Core.Utilities.Exception;
 
 namespace KariyerNetBackendTestCase.Core.Aspects.Validation
 {

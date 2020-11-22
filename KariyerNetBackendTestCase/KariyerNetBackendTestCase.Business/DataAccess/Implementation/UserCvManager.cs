@@ -3,7 +3,6 @@ using AutoMapper;
 using KariyerNetBackendTestCase.Business.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Business.Validation;
 using KariyerNetBackendTestCase.Core.Aspects.Validation;
-using KariyerNetBackendTestCase.Core.Entity;
 using KariyerNetBackendTestCase.Core.Utilities.Results;
 using KariyerNetBackendTestCase.DataAccess.Abstract;
 using KariyerNetBackendTestCase.Dto;
